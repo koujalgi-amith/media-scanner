@@ -9,7 +9,7 @@ public class MediaUtils {
     {
         String fileExtension = getFileExtension(filePath);
         String[] audioExtensionTypes = new String[] { "mp3", "m4a", "ogg", "wma", "wav", "mid" };
-        String[] videoExtensionTypes = new String[] { "mp4", "mkv", "avi", "wmv", "flv", "m4v" };
+        String[] videoExtensionTypes = new String[] { "mp4", "mpg", "mpeg", "vob", "mkv", "avi", "wmv", "flv", "m4v" };
 
         if( CollectionUtils.belongsTo(audioExtensionTypes, fileExtension) )
         {
@@ -33,6 +33,17 @@ public class MediaUtils {
         }
         String ext = filePath.substring(filePath.lastIndexOf(".") + 1, filePath.length());
         return ext;
+    }
+
+    public static String stripFileExtension( String file )
+    {
+        String ext = getFileExtension(file);
+        if( ext.trim().isEmpty() )
+        {
+            return file;
+        }
+        String extStripped = file.substring(0, file.lastIndexOf(ext, 0));
+        return extStripped;
     }
 
     public static boolean isFileToBeIgnored( String filePath )
